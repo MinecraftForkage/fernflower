@@ -141,7 +141,7 @@ public class FieldExprent extends Exprent {
           buf.append(DecompilerContext.getImportCollector().getShortName(ExprProcessor.buildJavaClassName(super_qualifier)));
           buf.append(".");
         }
-        buf.append("super");
+        buf.append("this");
       }
       else {
         TextBuffer buff = new TextBuffer();
