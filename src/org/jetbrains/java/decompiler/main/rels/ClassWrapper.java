@@ -149,6 +149,7 @@ public class ClassWrapper {
       }
       catch (Throwable ex) {
         DecompilerContext.getLogger().writeMessage("Method " + mt.getName() + " " + mt.getDescriptor() + " couldn't be decompiled.", ex);
+        ex.printStackTrace();
         isError = true;
       }
 

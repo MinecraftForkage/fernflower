@@ -18,8 +18,10 @@ package org.jetbrains.java.decompiler.modules.decompiler.stats;
 import org.jetbrains.java.decompiler.main.TextBuffer;
 import org.jetbrains.java.decompiler.main.collectors.BytecodeMappingTracer;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.Collections;
+import java.util.List;
 
 
 public class GeneralStatement extends Statement {
@@ -39,9 +41,9 @@ public class GeneralStatement extends Statement {
     first = head;
     stats.addWithKey(head, head.id);
 
-    HashSet<Statement> set = new HashSet<Statement>(statements);
-    set.remove(head);
-
+    List<Statement> set = new ArrayList<Statement>(statements);
+    while(set.remove(head));
+    Collections.sort(set); // determinism fix
     for (Statement st : set) {
       stats.addWithKey(st, st.id);
     }

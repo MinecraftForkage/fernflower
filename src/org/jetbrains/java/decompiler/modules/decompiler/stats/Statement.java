@@ -28,7 +28,7 @@ import org.jetbrains.java.decompiler.util.VBStyleCollection;
 
 import java.util.*;
 
-public class Statement {
+public class Statement implements Comparable<Statement> {
 
   public static final int STATEDGE_ALL = 1 << 31;
   public static final int STATEDGE_DIRECT_ALL = 1 << 30;
@@ -858,5 +858,15 @@ public class Statement {
   // helper methods
   public String toString() {
     return id.toString();
+  }
+  
+  
+  
+  // determinism fix
+  private static int nextSortingIndex = 0;
+  private int sortingIndex = nextSortingIndex++;
+  @Override
+  public int compareTo(Statement o) {
+    return Integer.compare(sortingIndex, o.sortingIndex);
   }
 }
